@@ -136,7 +136,7 @@ helps['account management-group subscription add'] = """
     examples:
         - name: Add a subscription to a management group.
           text: >
-             az managementgroups group new --group-name GroupName --subscription <subscription>
+             az managementgroups group new --group-name GroupName --subscription Subscription
 """
 
 helps['account management-group subscription remove'] = """
@@ -153,5 +153,5 @@ helps['account management-group subscription remove'] = """
     examples:
         - name: Remove an existing subscription from a management group.
           text: >
-             az managementgroups group remove --group-name GroupName --subscription <subscription>
+             az managementgroups group remove --group-name GroupName --subscription Subscription
 """

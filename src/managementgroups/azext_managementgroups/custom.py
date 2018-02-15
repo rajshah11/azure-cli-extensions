@@ -31,8 +31,6 @@ def _get_subscription_id_from_subscription(cli_ctx, subscription):
             return sub['id']
     from azure.cli.core.util import CLIError
     raise CLIError("Subscription not found in the current context.")
-    return None
-
 
 def cli_managementgroups_group_list(cmd, client):
     _register_rp(cmd.cli_ctx)

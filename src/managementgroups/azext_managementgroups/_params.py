@@ -4,13 +4,9 @@
 # --------------------------------------------------------------------------------------------
 from azure.cli.core.commands.parameters import get_three_state_flag
 
-# pylint: disable=line-too-long
-
-
 def load_arguments(self, _):
     with self.argument_context('account management-group') as c:
         c.argument('group_name', options_list=['--group-name', '--name', '-n'])
-
 
     with self.argument_context('account management-group show') as c:
         c.argument('expand', arg_type=get_three_state_flag(), options_list=['--expand', '-e'])
