@@ -14,20 +14,22 @@ def load_command_table(self, _):
     def managementgroups_type(*args, **kwargs):
         return CliCommandType(
             *args,
-            exception_handler=managementgroups_exception_handler,
             **kwargs)
 
     managementgroups_sdk = managementgroups_type(
         operations_tmpl='azext_managementgroups.managementgroups.operations.management_groups_operations#ManagementGroupsOperations.{}',
-        client_factory=management_groups_client_factory)
+        client_factory=management_groups_client_factory,
+        exception_handler=managementgroups_exception_handler)
 
     managementgroups_subscriptions_sdk = managementgroups_type(
         operations_tmpl='azext_managementgroups.managementgroups.operations.management_group_subscriptions_operations#ManagementGroupSubscriptionsOperations.{}',
-        client_factory=management_group_subscriptions_client_factory)
+        client_factory=management_group_subscriptions_client_factory,
+        exception_handler=managementgroups_exception_handler)
 
     managementgroups_update_type = managementgroups_type(
         operations_tmpl='azext_managementgroups.custom#{}',
-        client_factory=management_group_subscriptions_client_factory)
+        client_factory=management_group_subscriptions_client_factory,
+        exception_handler=managementgroups_exception_handler)
 
     with self.command_group('account management-group', managementgroups_sdk) as g:
         g.custom_command('list', 'cli_managementgroups_group_list')

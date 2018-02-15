@@ -5,14 +5,13 @@
 
 from azure.cli.core import AzCommandsLoader
 from ._help import helps  # pylint: disable=unused-import
-from ._client_factory import management_groups_client_factory
-from ._exception_handler import managementgroups_exception_handler
-
 
 class ManagementGroupsCommandsLoader(AzCommandsLoader):
 
     def __init__(self, cli_ctx=None):
         from azure.cli.core.commands import CliCommandType
+        from ._client_factory import management_groups_client_factory
+        from ._exception_handler import managementgroups_exception_handler
         managementgroups_customs = CliCommandType(
             operations_tmpl='azext_managementgroups.custom#{}',
             client_factory=management_groups_client_factory,

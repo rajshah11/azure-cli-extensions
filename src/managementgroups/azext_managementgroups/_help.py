@@ -44,13 +44,13 @@ helps['account management-group show'] = """
     examples:
         - name: Get a management group.
           text: >
-             az managementgroups group get --group-name <group_name>
+             az managementgroups group get --group-name GroupName
         - name: Get a management group with children in the first level of hierarchy.
           text: >
-             az managementgroups group get --group-name <group_name> -e
+             az managementgroups group get --group-name GroupName -e
         - name: Get a management group with children in all levels of hierarchy.
           text: >
-             az managementgroups group get --group-name <group_name> -e -r
+             az managementgroups group get --group-name GroupName -e -r
 """
 
 helps['account management-group create'] = """
@@ -70,16 +70,16 @@ helps['account management-group create'] = """
     examples:
         - name: Add a new management group.
           text: >
-             az managementgroups group new --group-name <group_name>
+             az managementgroups group new --group-name GroupName
         - name: Add a new management group with a specific display name.
           text: >
-             az managementgroups group new --group-name <group_name> --display-name <display_name>
+             az managementgroups group new --group-name GroupName --display-name DisplayName
         - name: Add a new management group with a specific parent id.
           text: >
-             az managementgroups group new --group-name <group_name> --parent-id <parent_id>
+             az managementgroups group new --group-name GroupName --parent-id ParentId
         - name: Add a new management group with a specific display name and parent id.
           text: >
-             az managementgroups group new --group-name <group_name> --display-name <display_name> --parent-id <parent_id>
+             az managementgroups group new --group-name GroupName --display-name DisplayName --parent-id ParentId
 """
 
 helps['account management-group update'] = """
@@ -99,13 +99,13 @@ helps['account management-group update'] = """
     examples:
         - name: Update an existing management group with a specific display name.
           text: >
-             az managementgroups group update --group-name <group_name> --display-name <display_name>
+             az managementgroups group update --group-name GroupName --display-name DisplayName
         - name: Update an existing management group with a specific parent id.
           text: >
-             az managementgroups group update --group-name <group_name> --parent-id <parent_id>
+             az managementgroups group update --group-name GroupName --parent-id ParentId
         - name: Update an existing management group with a specific display name and parent id.
           text: >
-             az managementgroups group update --group-name <group_name> --display-name <display_name> --parent-id <parent_id>
+             az managementgroups group update --group-name GroupName --display-name DisplayName --parent-id ParentId
 """
 
 helps['account management-group delete'] = """
@@ -119,7 +119,7 @@ helps['account management-group delete'] = """
     examples:
         - name: Remove an existing management group
           text: >
-             az managementgroups group remove --group-name <group_name>
+             az managementgroups group remove --group-name GroupName
 """
 
 helps['account management-group subscription add'] = """
@@ -136,7 +136,7 @@ helps['account management-group subscription add'] = """
     examples:
         - name: Add a subscription to a management group.
           text: >
-             az managementgroups group new --group-name <group_name> --subscription <subscription>
+             az managementgroups group new --group-name GroupName --subscription <subscription>
 """
 
 helps['account management-group subscription remove'] = """
@@ -153,5 +153,5 @@ helps['account management-group subscription remove'] = """
     examples:
         - name: Remove an existing subscription from a management group.
           text: >
-             az managementgroups group remove --group-name <group_name> --subscription <subscription>
+             az managementgroups group remove --group-name GroupName --subscription <subscription>
 """
