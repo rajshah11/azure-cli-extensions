@@ -25,19 +25,13 @@ def _register_rp(cli_ctx, subscription_id=None):
 
 def _get_subscription_id_from_subscription(cli_ctx, subscription):
     profile = Profile(cli_ctx=cli_ctx)
-    subscriptions_list = profile.load_cached_subscriptions(all_clouds=True)
-    return subscriptions_list
+    subscriptions_list = profile.load_cached_subscriptions()
     for sub in subscriptions_list:
         if sub['id'] == subscription or sub['name'] == subscription:
             return sub['id']
     from azure.cli.core.util import CLIError
     raise CLIError("Subscription not found in the current context.")
-
-
-class update_parameters:
-    def __init__(self):
-        self.display_name = None
-        self.parent_id = None
+    return None
 
 
 def cli_managementgroups_group_list(cmd, client):
@@ -69,17 +63,17 @@ def cli_managementgroups_group_create(
 
 
 def cli_managementgroups_group_update_custom_func(
-        cmd,
         instance,
         display_name=None,
         parent_id=None):
-    instance.display_name = display_name
-    instance.parent_id = parent_id
+    instance["display_name"] = display_name
+    instance["parent_id"] = parent_id
     return instance
 
 
 def cli_managementgroups_group_update_get():
-    return update_parameters()
+    update_parameters = {'display_name': None, 'parent_id': None}
+    return update_parameters
 
 
 def cli_managementgroups_group_update_set(
@@ -88,8 +82,8 @@ def cli_managementgroups_group_update_set(
     return client.update(
         group_name,
         "no_cache",
-        parameters.display_name,
-        parameters.parent_id)
+        parameters["display_name"],
+        parameters["parent_id"])
 
 
 def cli_managementgroups_group_delete(cmd, client, group_name):
@@ -101,8 +95,6 @@ def cli_managementgroups_subscription_add(
         cmd, client, group_name, subscription):
     subscription_id = _get_subscription_id_from_subscription(
         cmd.cli_ctx, subscription)
-    import json
-    return json.dumps(subscription_id)
     _register_rp(cmd.cli_ctx)
     _register_rp(cmd.cli_ctx, subscription_id)
     return client.create(group_name, subscription_id)
@@ -112,8 +104,6 @@ def cli_managementgroups_subscription_remove(
         cmd, client, group_name, subscription):
     subscription_id = _get_subscription_id_from_subscription(
         cmd.cli_ctx, subscription)
-    import json
-    return json.dumps(subscription_id)
     _register_rp(cmd.cli_ctx)
     _register_rp(cmd.cli_ctx, subscription_id)
     return client.delete(group_name, subscription_id)
